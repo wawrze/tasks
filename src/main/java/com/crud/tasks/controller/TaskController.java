@@ -12,6 +12,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/v1/task")
+@CrossOrigin(origins = "*")
 public class TaskController {
 
     @Autowired
