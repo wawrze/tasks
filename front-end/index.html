@@ -1,4 +1,4 @@
-<html lang="en">
+﻿<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -8,11 +8,11 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&subset=latin-ext" rel="stylesheet">
     </head>
     <body>
-        <h1 class="heading heading-main">CRUD Application</h1>
+        <h1>CRUD Application</h1>
         <main class="crud container">
             <section class="datatable">
                 <h2>Add a new task</h2>
-                <form class="datatable__row datatable__row--add" method="post" action="http://localhost:8090/v1/task/createTask" data-task-add-form>
+                <form class="datatable__row datatable__row--add" method="post" action="https://wawrze.herokuapp.com/task/createTask" data-task-add-form>
                     <fieldset class="datatable__row-section datatable__row-section--input-section">
                         <label class="datatable__input-label">Task name</label>
                         <input type="text" name="title" placeholder="Insert a task name" required minlenght="3">
@@ -37,6 +37,7 @@
                         <input type="text" name="title" placeholder="Insert a new task name" data-task-name-input required minlength="3">
                         <p class="datatable__field-value" data-task-name-paragraph></p>
                     </fieldset>
+
                     <fieldset class="datatable__row-section datatable__row-section--input-section" data-task-content-section>
                         <label class="datatable__input-label">Task content</label>
                         <textarea name="title" placeholder="Insert new task content" data-task-content-input required minlength="3"></textarea>
