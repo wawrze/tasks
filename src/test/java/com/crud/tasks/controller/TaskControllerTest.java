@@ -85,6 +85,7 @@ public class TaskControllerTest {
                         .content(jsonContent)
         )
                 .andExpect(status().isOk());
+            verify(dbService, times(1)).saveTask(any());
     }
 
     @Test
@@ -113,6 +114,7 @@ public class TaskControllerTest {
         //When & Then
         mockMvc.perform(delete("/v1/task/deleteTask?taskId=1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+        verify(dbService, times(1)).deleteTask(any());
     }
 
     @Test
@@ -137,6 +139,7 @@ public class TaskControllerTest {
                         .content(jsonContent)
         )
                 .andExpect(status().isOk());
+        verify(dbService, times(1)).saveTask(any());
     }
 
 }
