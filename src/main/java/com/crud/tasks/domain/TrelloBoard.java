@@ -8,7 +8,6 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class TrelloBoard {
 
     private String id;

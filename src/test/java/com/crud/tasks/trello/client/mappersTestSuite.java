@@ -1,6 +1,7 @@
 package com.crud.tasks.trello.client;
 
 import com.crud.tasks.domain.*;
+import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.mapper.TrelloMapper;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,10 +15,13 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TrelloMappersTestSuite {
+public class mappersTestSuite {
 
     @Autowired
     private TrelloMapper trelloMapper;
+
+    @Autowired
+    private TaskMapper taskMapper;
 
     @Test
     public void testMapToBoards() {
@@ -73,6 +77,45 @@ public class TrelloMappersTestSuite {
         Assert.assertEquals(trelloCard.getDescription(), trelloCardDto.getDescription());
         Assert.assertEquals(trelloCard.getPos(), trelloCardDto.getPos());
         Assert.assertEquals(trelloCard.getListId(), trelloCardDto.getListId());
+    }
+
+    @Test
+    public void testMapToTask() {
+        //Given
+        TaskDto taskDto = new TaskDto(1L, "title", "content");
+        //When
+        Task task = taskMapper.mapToTask(taskDto);
+        //Then
+        Assert.assertEquals(1, task.getId(), 0);
+        Assert.assertEquals("title", task.getTitle());
+        Assert.assertEquals("content", task.getContent());
+    }
+
+    @Test
+    public void testMapToTaskDto() {
+        //Given
+        Task task = new Task(1L, "title", "content");
+        //When
+        TaskDto taskDto = taskMapper.mapToTaskDto(task);
+        //Then
+        Assert.assertEquals(1, taskDto.getId(), 0);
+        Assert.assertEquals("title", taskDto.getTitle());
+        Assert.assertEquals("content", taskDto.getContent());
+    }
+
+    @Test
+    public void testMapToTaskDtoList() {
+        //Given
+        List<Task> tasks = new ArrayList<>();
+        tasks.add(new Task());
+        tasks.add(new Task());
+        tasks.add(new Task(1L, "title", "content"));
+        //When
+        List<TaskDto> taskDtos = taskMapper.mapToTaskDtoList(tasks);
+        //Then
+        Assert.assertNotNull(taskDtos);
+        Assert.assertEquals(3, taskDtos.size());
+        Assert.assertEquals("title", taskDtos.get(2).getTitle());
     }
 
 }
