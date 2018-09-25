@@ -110,9 +110,9 @@
                                             </tbody>
                                         </table>
                                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                                            Application functionality:
+                                            Tasks in database:
                                         </p>
-                                        <ul th:each="function : ${application_functionality}">
+                                        <ul th:each="function : ${tasks}">
                                             <li th:text="${function}"></li>
                                         </ul>
                                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;" th:text="${goodbye_message}"></p>
