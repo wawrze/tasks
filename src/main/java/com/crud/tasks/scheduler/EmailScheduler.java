@@ -7,6 +7,7 @@ import com.crud.tasks.service.SimpleEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 @Component
 public class EmailScheduler {
@@ -22,6 +23,9 @@ public class EmailScheduler {
     @Autowired
     private AdminConfig adminConfig;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @Scheduled(cron = "0 0 10 * * *")
 //    @Scheduled(fixedDelay = 20000)
     public void sendInformationEmail() {
@@ -32,6 +36,11 @@ public class EmailScheduler {
                 SUBJECT,
                 "Currently in database you got " + size + (size == 1 ? " task." : " tasks.")
         ));
+    }
+
+    @Scheduled(fixedDelay = 1500000)
+    public void getGames() {
+        restTemplate.getForObject("http://restcheckers.herokuapp.com/game/getGames", Object.class);
     }
 
 }
